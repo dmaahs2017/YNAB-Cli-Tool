@@ -1,0 +1,13 @@
+[package]
+name = "wants_needs_rust"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+chrono = { version = "0.4.22", features = ["serde"]}
+reqwest = { version = "0.11", features = ["json"] }
+serde = { versin = "1.0.147", features = ["derive"] }
+serde_json = "1.0.87"
+tokio = { version = "1", features = ["full"] }
