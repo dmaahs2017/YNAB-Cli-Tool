@@ -73,12 +73,38 @@ impl YnabApi {
         Ok(resp)
     }
 
-    pub async fn get_budgets(&mut self) -> ApiResult<Data<BudgetSummaryResponse>> {
+    /// TODO: Implement include accounts feature
+    pub async fn list_budgets(&mut self, _include_accounts: bool) -> ApiResult<Data<BudgetSummaryResponse>> {
         let endp = "/budgets";
         Ok(serde_json::from_str(&self.get(endp).await?)?)
     }
 
-    pub async fn get_categories(&mut self, budget_id: &str) -> ApiResult<Data<CategoriesResponse>> {
+    /// TODO
+    pub async fn get_budget(&mut self, _budget_id: &str, _last_knowledge_of_server: Option<i32>) -> ApiResult<Data<()>> {
+        todo!("GET /budgets/{_budget_id}")
+    }
+
+    /// TODO
+    pub async fn budget_settings(&mut self, _budget_id: &str) -> ApiResult<Data<()>> {
+        todo!("GET /budgets/{_budget_id}/settings")
+    }
+
+    /// TODO
+    pub async fn list_accounts(&mut self, _budget_id: &str, _last_knowledge_of_server: Option<i32>) -> ApiResult<Data<()>> {
+        todo!("GET /budgets/{_budget_id}/accounts")
+    }
+
+    /// TODO
+    pub async fn create_account(&mut self, _budget_id: &str, _name: &str, _type: &str, _balance: i64) -> ApiResult<Data<()>> {
+        todo!("POST /budgets/{_budget_id}/accounts")
+    }
+
+    /// TODO
+    pub async fn get_account(&mut self, _budget_id: &str, _account_id: &str) -> ApiResult<Data<()>> {
+        todo!("GET /budgets/{_budget_id}/accounts/{_account_id}")
+    }
+
+    pub async fn list_categories(&mut self, budget_id: &str) -> ApiResult<Data<CategoriesResponse>> {
         let endp = &format!("/budgets/{budget_id}/categories");
         Ok(serde_json::from_str(&self.get(endp).await?)?)
     }
