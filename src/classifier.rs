@@ -28,7 +28,7 @@ impl Classifier {
 
     pub fn classify(&mut self, category: &str) -> Class {
         if self.classes.contains_key(category) {
-            return self.classes.get(category).unwrap().clone();
+            return self.classes.get(category).expect("This is safe, just checked the key").clone();
         }
         let cls = prompt_class(category);
         self.classes.insert(category.to_string(), cls);
@@ -45,7 +45,7 @@ fn prompt_class(category: &str) -> Class {
         println!("(4) Loan");
         let mut line = String::new();
         let stdin = io::stdin();
-        stdin.lock().read_line(&mut line).unwrap();
+        stdin.lock().read_line(&mut line).expect("Failed here 4");
         if let Ok(choice) = line.trim().parse::<i32>() {
             if choice == 1 {
                 return Class::Want;
